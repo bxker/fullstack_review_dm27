@@ -1,0 +1,15 @@
+@mixin button-default{
+    height: 100px;
+    width: 150px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+}
+
+.login_button {
+    @include button-default;
+}
+
+.random_button{
+    @include button-default
+}

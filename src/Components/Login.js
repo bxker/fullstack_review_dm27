@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {getUser, login} from '../redux/reducers/userReducer'
 import {Redirect, Link} from 'react-router-dom'
+import '../styles/Login.css'
 
 class Login extends Component {
     constructor(){
@@ -34,8 +35,9 @@ class Login extends Component {
                 <h2>{this.props.user_id}</h2>
                 <input placeholder="username" name="username" onChange={this.handleUserInput}></input>
                 <input placeholder="password" name="password" onChange={this.handleUserInput}></input>
-                <button onClick={() => this.props.login(this.state.username, this.state.password)}>Login</button>
+                <button className="login_button" onClick={() => this.props.login(this.state.username, this.state.password)}>Login</button>
                 <Link to="/register"><h3>Don't have an account? Register here!</h3></Link>
+                <button className="random_button">ALSDKJASLDJK</button>
             </div>
         )
     }
