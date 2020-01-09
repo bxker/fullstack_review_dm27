@@ -9,6 +9,7 @@ const session = require('express-session')
 const {register, login, logout, getUser} = require('./controllers/userController');
 const {add, edit, deleteProduct} = require('./controllers/adminController')
 const {getAllProducts} = require('./controllers/productsController')
+const {addToCart, getCart} = require('./controllers/cartController')
 
 //dotenv
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
@@ -47,6 +48,10 @@ app.delete('/admin/delete/:product_id', deleteProduct)
 
 //products
 app.get('/api/products', getAllProducts)
+
+//cart
+app.post('/cart/add/:product_id', addToCart)
+app.get('/cart/products', getCart)
 
 //listen
 app.listen(SERVER_PORT, () => console.log(`Server listening on ${SERVER_PORT}`))
