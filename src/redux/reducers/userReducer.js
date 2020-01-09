@@ -11,6 +11,7 @@ const initalState = {
 export const GET_USER = 'GET_USER'
 export const LOGIN_USER = 'LOGIN_USER'
 export const REGISTER_USER = 'REGISTER_USER'
+export const LOGOUT_USER = 'LOGOUT_USER'
 
 //functions
 export function getUser(){
@@ -43,6 +44,13 @@ export function register(username, password, is_Admin){
     }
 }
 
+export function logout(){
+    return {
+        type: LOGOUT_USER,
+        payload: axios.post('/auth/logout')
+    }
+}
+
 //reducer
 export default function reducer(state = initalState, action){
     const {type, payload} = action
@@ -67,6 +75,13 @@ export default function reducer(state = initalState, action){
                 user_id: payload.data.user_id,
                 username: payload.data.username,
                 is_Admin: payload.data.is_Admin
+            }
+        case `${LOGOUT_USER}_FULFILLED`:
+            return {
+                ...state,
+                user_id: null,
+                username: '',
+                is_Admin: false
             }
         default: return state
     }

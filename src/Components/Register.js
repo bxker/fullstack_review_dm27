@@ -45,10 +45,10 @@ class Register extends Component {
                 <h2>{this.props.user_id}</h2>
                 <input placeholder="username" name="username" onChange={this.handleUserInput}></input>
                 <input placeholder="password" name="password" onChange={this.handleUserInput}></input>
-                <input type="checkbox" onChange={this.handleBoxClick}/>
                 <h4>Is Admin?</h4>
+                <input type="checkbox" onChange={this.handleBoxClick}/>
                 <button onClick={() => this.props.register(this.state.username, this.state.password, this.state.is_Admin)}>Login</button>
-                <Link to="/register"><h3>Don't have an account? Register here!</h3></Link>
+                <Link to="/"><h3>Already have an account? Login here!</h3></Link>
             </div>
         )
     }
