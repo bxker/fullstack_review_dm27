@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import {getUser, login} from '../redux/reducers/userReducer'
+import {getUser, register} from '../redux/reducers/userReducer'
 import {Redirect, Link} from 'react-router-dom'
 
-class Login extends Component {
+class Register extends Component {
     constructor(){
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            is_Admin: false
         }
     }
 
@@ -22,7 +23,17 @@ class Login extends Component {
         })
     }
 
+    handleBoxClick = (e) => {
+        console.log(e.target.checked)
+        if(e.target.checked === true){
+            this.setState({is_Admin: true})
+        }else{
+            this.setState({is_Admin: false})
+        }
+    }
+
     render() {
+        console.log(this.state.is_Admin)
         if(this.props.user_id){
             return(
                 <Redirect to="/dashboard" />
@@ -30,11 +41,13 @@ class Login extends Component {
         }
         return (
             <div>
-                <h1>Login</h1>
+                <h1>Register</h1>
                 <h2>{this.props.user_id}</h2>
                 <input placeholder="username" name="username" onChange={this.handleUserInput}></input>
                 <input placeholder="password" name="password" onChange={this.handleUserInput}></input>
-                <button onClick={() => this.props.login(this.state.username, this.state.password)}>Login</button>
+                <input type="checkbox" onChange={this.handleBoxClick}/>
+                <h4>Is Admin?</h4>
+                <button onClick={() => this.props.register(this.state.username, this.state.password, this.state.is_Admin)}>Login</button>
                 <Link to="/register"><h3>Don't have an account? Register here!</h3></Link>
             </div>
         )
@@ -49,6 +62,5 @@ const mapStateToProps = (reduxState) => {
 
 export default connect(mapStateToProps, {
     getUser,
-    login
-})(Login)
-
+    register
+})(Register)
