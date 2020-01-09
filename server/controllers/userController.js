@@ -47,16 +47,17 @@ const login = async (req, res) => {
         }
     }
 }
-// const logout = () => {
-
-// }
-// const getUser = () => {
-
-// }
+const logout = (req, res) => {
+    req.session.destroy()
+    res.status(200).json('Logged out')
+}
+const getUser = (req, res) => {
+    res.status(200).json(req.session.user)
+}
 
 module.exports = {
     register,
     login,
-    // logout,
-    // getUser
+    logout,
+    getUser
 }
